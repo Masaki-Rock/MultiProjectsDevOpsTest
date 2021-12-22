@@ -1,0 +1,31 @@
+name: MuleSoft CI process script
+
+# Trigger settings
+on:
+  push:
+    branches: [ main ]
+    path: ['contact-v1/*']
+  pull_request:
+    branches: [ main ]
+    path: ['contact-v1/*']
+
+# Job settings
+jobs:
+  # build script
+  application-build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Build the Mule application with Maven.
+        run: mvn clean package -DattachMuleSources
+      
+      - name: Upload the Mule application file to the release folder.
+        run: java -jar app.jar -gitupload -gittoken ${{ secrets.GITHUB_TOKEN }} -config project-contact.yaml
+        shell: bash
+        working-directory: .github/script

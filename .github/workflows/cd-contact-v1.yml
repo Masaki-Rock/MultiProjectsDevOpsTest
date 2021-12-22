@@ -1,0 +1,37 @@
+name: MuleSoft CD process script
+
+# Trigger settings
+on:
+  workflow_dispatch:
+    inputs:
+      org:
+        description: 'Deploy Environment.'
+        required: true
+        default: 'SalesDept'
+      env:
+        description: 'Deploy Bussines group.'
+        required: false
+        default: 'Dev'
+
+# Job settings
+jobs:
+  # build script
+  application-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Echo input parameter.
+        run: |
+          echo "The Business Group ID is ${{ github.event.inputs.org }}"
+          echo "The Environment is ${{ github.event.inputs.env }}"
+      
+      - name: Upload the Mule application file to the release folder.
+        run: java -jar app.jar -gitrelease -org ${{ github.event.inputs.org }} -env ${{ github.event.inputs.env }}  -gittoken ${{ secrets.GITHUB_TOKEN }} -config project-contact.yaml
+        shell: bash
+        working-directory: .github/script

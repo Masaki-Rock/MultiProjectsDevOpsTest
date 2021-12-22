@@ -1,0 +1,171 @@
+#%RAML 1.0
+baseUri: https://api.accenture.com/
+title: TLSTestAPI
+version: v1
+
+/opportunities:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "opportunities": [
+                  {
+                    "Id" : "0012x000009umi3AAA",
+                    "Name" : "opportunitieTree1",
+                    "CleanStatus" : "Pending",
+                    "Website" : "www.salesforce2.com",
+                    "Industry" : "Banking",
+                    "NumberOfEmployees" : 100,
+                    "OwnerId" : "0052x000002EsZBAA0",
+                    "Phone" : "1234567890",
+                    "PhotoUrl" : "/services/images/photo/0012x000009umi3AAA",
+                    "SystemModstamp" : "2020-07-23T02:57:09.000+0000",
+                    "CreatedById" : "0052x000002EsZBAA0",
+                    "CreatedDate" : "2020-07-23T02:57:09.000+0000"
+                  },
+                  {
+                    "Id" : "0012x000009umi3AAA",
+                    "Name" : "opportunitieTree2",
+                    "CleanStatus" : "Pending",
+                    "Website" : "www.salesforce2.com",
+                    "Industry" : "Banking",
+                    "NumberOfEmployees" : 100,
+                    "OwnerId" : "0052x000002EsZBAA0",
+                    "Phone" : "1234567890",
+                    "PhotoUrl" : "/services/images/photo/0012x000009umi3AAA",
+                    "SystemModstamp" : "2020-07-23T02:57:09.000+0000",
+                    "CreatedById" : "0052x000002EsZBAA0",
+                    "CreatedDate" : "2020-07-23T02:57:09.000+0000"
+                  },
+                  {
+                    "Id" : "0012x000009umi3AAA",
+                    "Name" : "opportunitieTree3",
+                    "CleanStatus" : "Pending",
+                    "Website" : "www.salesforce2.com",
+                    "Industry" : "Banking",
+                    "NumberOfEmployees" : 100,
+                    "OwnerId" : "0052x000002EsZBAA0",
+                    "Phone" : "1234567890",
+                    "PhotoUrl" : "/services/images/photo/0012x000009umi3AAA",
+                    "SystemModstamp" : "2020-07-23T02:57:09.000+0000",
+                    "CreatedById" : "0052x000002EsZBAA0",
+                    "CreatedDate" : "2020-07-23T02:57:09.000+0000"
+                  }
+                ]
+              }
+  post:
+    responses:
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "opportunitie": {
+                  "Id" : "0012x000009umi3AAA",
+                  "Name" : "opportunitieTree1",
+                  "CleanStatus" : "Pending",
+                  "Website" : "www.salesforce2.com",
+                  "Industry" : "Banking",
+                  "NumberOfEmployees" : 100,
+                  "OwnerId" : "0052x000002EsZBAA0",
+                  "Phone" : "1234567890",
+                  "PhotoUrl" : "/services/images/photo/0012x000009umi3AAA",
+                  "SystemModstamp" : "2020-07-23T02:57:09.000+0000",
+                  "CreatedById" : "0052x000002EsZBAA0",
+                  "CreatedDate" : "2020-07-23T02:57:09.000+0000"
+                }
+              }
+/opportunity/{ID}:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "Id" : "0012x000009umi3AAA",
+                "Name" : "opportunitieTree1",
+                "CleanStatus" : "Pending",
+                "Website" : "www.salesforce2.com",
+                "Industry" : "Banking",
+                "NumberOfEmployees" : 100,
+                "OwnerId" : "0052x000002EsZBAA0",
+                "Phone" : "1234567890",
+                "PhotoUrl" : "/services/images/photo/0012x000009umi3AAA",
+                "SystemModstamp" : "2020-07-23T02:57:09.000+0000",
+                "CreatedById" : "0052x000002EsZBAA0",
+                "CreatedDate" : "2020-07-23T02:57:09.000+0000"
+              }
+  patch:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "opportunitie": {
+                  "Id" : "0012x000009umi3AAA",
+                  "Name" : "opportunitieTree1",
+                  "CleanStatus" : "Pending",
+                  "Website" : "www.salesforce2.com",
+                  "Industry" : "Banking",
+                  "NumberOfEmployees" : 100,
+                  "OwnerId" : "0052x000002EsZBAA0",
+                  "Phone" : "1234567890",
+                  "PhotoUrl" : "/services/images/photo/0012x000009umi3AAA",
+                  "SystemModstamp" : "2020-07-23T02:57:09.000+0000",
+                  "CreatedById" : "0052x000002EsZBAA0",
+                  "CreatedDate" : "2020-07-23T02:57:09.000+0000"
+                }
+              }
+  delete:
+    responses:
+      204:
+        body:
+          application/json:
+            example: { }
+/opportunitie/{ID}/items:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "Id" : "0012x000009umi3AAA",
+                "Name" : "itemTree1",
+                "CleanStatus" : "Pending",
+                "Website" : "www.salesforce2.com",
+                "Industry" : "Banking",
+                "NumberOfEmployees" : 100,
+                "OwnerId" : "0052x000002EsZBAA0",
+                "Phone" : "1234567890",
+                "PhotoUrl" : "/services/images/photo/0012x000009umi3AAA",
+                "SystemModstamp" : "2020-07-23T02:57:09.000+0000",
+                "CreatedById" : "0052x000002EsZBAA0",
+                "CreatedDate" : "2020-07-23T02:57:09.000+0000"
+              }
+/opportunitie/{opportunitieID}/items/{contractID}:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "Id" : "0012x000009umi3AAA",
+                "Name" : "itemTree1",
+                "CleanStatus" : "Pending",
+                "Website" : "www.salesforce2.com",
+                "Industry" : "Banking",
+                "NumberOfEmployees" : 100,
+                "OwnerId" : "0052x000002EsZBAA0",
+                "Phone" : "1234567890",
+                "PhotoUrl" : "/services/images/photo/0012x000009umi3AAA",
+                "SystemModstamp" : "2020-07-23T02:57:09.000+0000",
+                "CreatedById" : "0052x000002EsZBAA0",
+                "CreatedDate" : "2020-07-23T02:57:09.000+0000"
+              }
