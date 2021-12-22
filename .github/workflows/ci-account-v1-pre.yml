@@ -24,6 +24,7 @@ jobs:
           distribution: 'adopt'
       - name: Build the Mule application with Maven.
         run: mvn clean package -DattachMuleSources
+        working-directory: account-v1
       
       - name: Upload the Mule application file to the release folder.
         run: java -jar app.jar -gitupload -gitpre true -gittoken ${{ secrets.GITHUB_TOKEN }} -config project-account.yaml
