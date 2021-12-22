@@ -27,6 +27,6 @@ jobs:
         working-directory: opportunity-v1
       
       - name: Upload the Mule application file to the release folder.
-        run: java -jar app.jar -gitupload -gitpre true -gittoken ${{ secrets.GITHUB_TOKEN }} -config project-opportunity.yaml
+        run: java -jar app.jar -gitupload -gitpre true -gittoken ${{ secrets.GITHUB_TOKEN }} -config project-opportunity-v1.yaml
         shell: bash
         working-directory: .github/script

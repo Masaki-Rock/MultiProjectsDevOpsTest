@@ -27,6 +27,6 @@ jobs:
         working-directory: account-v1
       
       - name: Upload the Mule application file to the release folder.
-        run: java -jar app.jar -gitupload -gittoken ${{ secrets.GITHUB_TOKEN }} -config project-account.yaml
+        run: java -jar app.jar -gitupload -gittoken ${{ secrets.GITHUB_TOKEN }} -config project-account-v1.yaml
         shell: bash
         working-directory: .github/script
