@@ -30,10 +30,10 @@ organization:
 # 個別設定ファイル
 project:
   config:
-    path: project.yaml
+    path: project-account-v1.yaml
     
 # GitHub
 github:
   accountID: Masaki-Rock
-  repositoryID: GitHubActionsTestApp
+  repositoryID: MultiProjectsDevOpsTest
   accessToken: ghu_kbdlMoCT1EClj0DIbiT1Mu2rxE2WPk1p9pn0
