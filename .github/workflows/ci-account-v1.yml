@@ -1,4 +1,4 @@
-name: MuleSoft CI process script
+name: MuleSoft CI account-v1 process script
 
 # Trigger settings
 on:

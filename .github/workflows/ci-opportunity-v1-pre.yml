@@ -1,4 +1,4 @@
-name: MuleSoft CI staging process script
+name: MuleSoft CI opportunity-v1 staging process script
 
 # Trigger settings
 on:
