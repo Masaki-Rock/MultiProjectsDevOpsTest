@@ -18,7 +18,10 @@ jobs:
   # build script
   application-release:
     runs-on: ubuntu-latest
-    
+    env:
+      PROJECT_HOME : '../../account-v1'
+      BRUANCH : main
+      WORK_DIR : account-v1
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -31,7 +34,14 @@ jobs:
           echo "The Business Group ID is ${{ github.event.inputs.org }}"
           echo "The Environment is ${{ github.event.inputs.env }}"
       
-      - name: Upload the Mule application file to the release folder.
-        run: java -jar app.jar -gitrelease -org ${{ github.event.inputs.org }} -env ${{ github.event.inputs.env }}  -gittoken ${{ secrets.GITHUB_TOKEN }} -config project-account-v1.yaml
+      - name: Download deployment file.
+        id: download
+        run: java -jar app.jar -download -token ${{ secrets.GITHUB_TOKEN }} -config ${{ env.PROJECT_HOME }} -branch ${{ env.BRUANCH }}
         shell: bash
         working-directory: .github/script
+        id : 
+        
+      - name: Deploy to specified environment.
+        run: mvn mule:deploy -Dmule.artifact=${{steps.download.outputs.result}} -DbusinessGroup=${{ github.event.inputs.org }} -Denvironment=${{ github.event.inputs.env }} -DworkerType=Micro
+        shell: bash
+        working-directory: ${{ WORK_DIR }}
