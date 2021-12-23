@@ -43,4 +43,4 @@ jobs:
       - name: Deploy to specified environment.
         run: mvn mule:deploy -Dmule.artifact=${{steps.download.outputs.result}} -DbusinessGroup=${{ github.event.inputs.org }} -Denvironment=${{ github.event.inputs.env }} -DworkerType=Micro
         shell: bash
-        working-directory: ${{ WORK_DIR }}
+        working-directory: ${{ env.WORK_DIR }}
