@@ -15,7 +15,7 @@ jobs:
   application-build:
     runs-on: ubuntu-latest
     env:
-      PROJECT_HOME : ../../contact-v1
+      PROJECT_HOME : '../../contact-v1'
       BRUANCH : main
     steps:
       - uses: actions/checkout@v2
