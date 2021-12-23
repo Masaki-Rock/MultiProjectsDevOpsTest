@@ -7,6 +7,15 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>mule-application</packaging>
 
+    <github>
+      <releaseName>account-v1-0.0.1</releaseName>
+      <accountId>Masaki-Rock</accountId>
+      <repositoryId>MultiProjectsDevOpsTest</repositoryId>
+      <token>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</token>
+      <releaseName>account-v1</releaseName>
+      <preReleaseFlag>false</preReleaseFlag>
+    </github>
+    
 	<name>contact-v1</name>
 
     <properties>
