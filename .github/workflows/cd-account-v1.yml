@@ -37,8 +37,8 @@ jobs:
       - name: Download deployment file.
         id: download
         run: 
-          java -jar app.jar -download -token ${{ secrets.GITHUB_TOKEN }} -config ${{ env.PROJECT_HOME }} -branch ${{ env.BRUANCH }} > ./result
-          echo filenme::$(cat ./result) >> $GITHUB_ENV
+          java -jar app.jar -download -token ${{ secrets.GITHUB_TOKEN }} -config ${{ env.PROJECT_HOME }} -branch ${{ env.BRUANCH }}
+          echo filenme::$(find -name account-\*.jar) >> $GITHUB_ENV
         shell: bash
         working-directory: .github/script
         
