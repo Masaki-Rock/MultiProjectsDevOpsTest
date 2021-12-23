@@ -36,11 +36,13 @@ jobs:
       
       - name: Download deployment file.
         id: download
-        run: java -jar app.jar -download -token ${{ secrets.GITHUB_TOKEN }} -config ${{ env.PROJECT_HOME }} -branch ${{ env.BRUANCH }}
+        run: |
+          java -jar app.jar -download -token ${{ secrets.GITHUB_TOKEN }} -config ${{ env.PROJECT_HOME }} -branch ${{ env.BRUANCH }} >> $result
+          echo '::set-output name=filepath::$result'
         shell: bash
         working-directory: .github/script
         
       - name: Deploy to specified environment.
-        run: mvn mule:deploy -Dmule.artifact=${{ format('../.github/script/{0}',steps.download.outputs.result) }} -DbusinessGroup=${{ github.event.inputs.org }} -Denvironment=${{ github.event.inputs.env }} -DworkerType=Micro -X
+        run: mvn mule:deploy -Dmule.artifact=${{ format('../.github/script/{0}',steps.download.outputs.filepath) }} -DbusinessGroup=${{ github.event.inputs.org }} -Denvironment=${{ github.event.inputs.env }} -DworkerType=Micro -X
         shell: bash
         working-directory: ${{ env.WORK_DIR }}
