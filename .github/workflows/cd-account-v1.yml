@@ -41,6 +41,6 @@ jobs:
         working-directory: .github/script
         
       - name: Deploy to specified environment.
-        run: mvn mule:deploy -Dmule.artifact=${{ format('../.github/script/{}',steps.download.outputs.result) }} -DbusinessGroup=${{ github.event.inputs.org }} -Denvironment=${{ github.event.inputs.env }} -DworkerType=Micro
+        run: mvn mule:deploy -Dmule.artifact=${{ format('../.github/script/{0}',steps.download.outputs.result) }} -DbusinessGroup=${{ github.event.inputs.org }} -Denvironment=${{ github.event.inputs.env }} -DworkerType=Micro
         shell: bash
         working-directory: ${{ env.WORK_DIR }}
