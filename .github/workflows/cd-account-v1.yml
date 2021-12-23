@@ -37,7 +37,7 @@ jobs:
       - name: Download deployment file.
         id: download
         run: |
-          echo "##[set-output name=result;]java -jar app.jar -download -token ${{ secrets.GITHUB_TOKEN }} -config ${{ env.PROJECT_HOME }} -branch ${{ env.BRUANCH }}"
+          echo "##[set-output name=result;] $(java -jar app.jar -download -token ${{ secrets.GITHUB_TOKEN }} -config ${{ env.PROJECT_HOME }} -branch ${{ env.BRUANCH }})"
         shell: bash
         working-directory: .github/script
         
