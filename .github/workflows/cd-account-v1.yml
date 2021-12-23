@@ -38,11 +38,11 @@ jobs:
         id: download
         run: 
           java -jar app.jar -download -token ${{ secrets.GITHUB_TOKEN }} -config ${{ env.PROJECT_HOME }} -branch ${{ env.BRUANCH }}
-          echo filenme::$(find -name account-\*.jar) >> $GITHUB_ENV
+          echo "filenme::${ find -name account-v1-\*.jar }" >> $GITHUB_ENV
         shell: bash
         working-directory: .github/script
         
       - name: Deploy to specified environment.
-        run: mvn mule:deploy -Dmule.artifact=${{ format('../.github/script/{0}',steps.download.outputs.result) }} -DbusinessGroup=${{ github.event.inputs.org }} -Denvironment=${{ github.event.inputs.env }} -DworkerType=Micro -X
+        run: mvn mule:deploy -Dmule.artifact=${{ format('../.github/script/{0}', env.filenme) }} -DbusinessGroup=${{ github.event.inputs.org }} -Denvironment=${{ github.event.inputs.env }} -DworkerType=Micro -X
         shell: bash
         working-directory: ${{ env.WORK_DIR }}
