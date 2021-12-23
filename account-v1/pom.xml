@@ -6,14 +6,6 @@
     <artifactId>account-v1</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>mule-application</packaging>
-
-    <github>
-      <releaseName>account-v1-0.0.1</releaseName>
-      <accountId>Masaki-Rock</accountId>
-      <repositoryId>MultiProjectsDevOpsTest</repositoryId>
-      <token>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</token>
-      <preReleaseFlag>false</preReleaseFlag>
-    </github>
     
     <name>account-v1</name>
 
@@ -24,7 +16,7 @@
         <app.runtime>4.4.0</app.runtime>
         <mule.maven.plugin.version>3.5.3</mule.maven.plugin.version>
         
-        <anypoint.uri>https://anypoint.mulesoft.com</anypoint.uri>
+        <!-- Runtime settings -->
         <deploymentType>cloudhub</deploymentType>
         <redeploy>true</redeploy>
         <businessGroup>アクセンチュア</businessGroup>
@@ -38,10 +30,19 @@
         <environment.client_secret>5470F704c42b4a98a8257f213c35c967</environment.client_secret>
         <api.id>12345</api.id>
         
+        <!-- Login Certificate -->
+        <anypoint.uri>https://anypoint.mulesoft.com</anypoint.uri>
         <username>dev29_masakikawaguchi</username>
         <password>Accenture2021</password>
         <connectedAppClientId>a4fc1e985e974cbd917a0b357671d024</connectedAppClientId>
         <connectedAppClientSecret>6401b69833564e3eb91E6Ca9668E4ED1</connectedAppClientSecret>
+        
+        <!-- Github -->
+        <releaseName>account-v1-0.0.1</releaseName>
+        <accountId>Masaki-Rock</accountId>
+        <repositoryId>MultiProjectsDevOpsTest</repositoryId>
+        <token>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</token>
+        <preReleaseFlag>false</preReleaseFlag>
     </properties>
 
     <build>
