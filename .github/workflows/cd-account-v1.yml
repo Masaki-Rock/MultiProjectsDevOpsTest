@@ -39,7 +39,6 @@ jobs:
         run: java -jar app.jar -download -token ${{ secrets.GITHUB_TOKEN }} -config ${{ env.PROJECT_HOME }} -branch ${{ env.BRUANCH }}
         shell: bash
         working-directory: .github/script
-        id : 
         
       - name: Deploy to specified environment.
         run: mvn mule:deploy -Dmule.artifact=${{steps.download.outputs.result}} -DbusinessGroup=${{ github.event.inputs.org }} -Denvironment=${{ github.event.inputs.env }} -DworkerType=Micro
