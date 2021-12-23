@@ -17,6 +17,7 @@ jobs:
     env:
       PROJECT_HOME : '../../contact-v1'
       BRUANCH : main
+      WORK_DIR : contact-v1
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -26,7 +27,7 @@ jobs:
           distribution: 'adopt'
       - name: Build the Mule application with Maven.
         run: mvn clean package -DattachMuleSources
-        working-directory: account-v1
+        working-directory: ${{ env.WORK_DIR }}
       
       - name: Upload the Mule application file to the release folder.
         run: java -jar app.jar -upload -token ${{ secrets.GITHUB_TOKEN }} -config ${{ env.PROJECT_HOME }} -branch ${{ env.BRUANCH }}
