@@ -41,7 +41,7 @@
         <releaseName>account-v1-0.0.1</releaseName>
         <accountId>Masaki-Rock</accountId>
         <repositoryId>MultiProjectsDevOpsTest</repositoryId>
-        <token>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</token>
+        <token>XXXXXX</token>
         <preReleaseFlag>false</preReleaseFlag>
     </properties>
 
