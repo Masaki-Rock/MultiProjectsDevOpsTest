@@ -40,13 +40,19 @@ jobs:
         working-directory: .github/script
         
       - name: setting deployment file name.
+        id: fileNameSettings
         run: |
           echo "FILE_NAME::$(find -name account-v1-\*.jar)"
-          echo "FILE_NAME::$FILE_NAME" >> $GITHUB_ENV
+        shell: bash
+        working-directory: .github/script
+        
+      - name: echo file name.
+        run: |
+          echo ${{steps.fileNameSettings.outputs.FILE_NAME}}
         shell: bash
         working-directory: .github/script
         
       - name: Deploy to specified environment.
-        run: mvn mule:deploy -Dmule.artifact=${{ format('../.github/script/{0}', env.FILE_NAME) }} -DbusinessGroup=${{ github.event.inputs.org }} -Denvironment=${{ github.event.inputs.env }} -DworkerType=Micro -X
+        run: mvn mule:deploy -Dmule.artifact=${{ format('../.github/script/{0}', steps.fileNameSettings.outputs.FILE_NAME) }} -DbusinessGroup=${{ github.event.inputs.org }} -Denvironment=${{ github.event.inputs.env }} -DworkerType=Micro -X
         shell: bash
         working-directory: ${{ env.WORK_DIR }}
