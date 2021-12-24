@@ -42,7 +42,7 @@ jobs:
       - name: setting deployment file name.
         id: fileNameSettings
         run: |
-          echo "FILE_NAME::$(find -name account-v1-\*.jar)"
+          echo "::set-output name=FILE_NAME::'$(find -name account-v1-\*.jar)'"
         shell: bash
         working-directory: .github/script
         
