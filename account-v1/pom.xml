@@ -16,27 +16,28 @@
         <app.runtime>4.4.0</app.runtime>
         <mule.maven.plugin.version>3.5.3</mule.maven.plugin.version>
         
-        <!-- Runtime settings -->
-        <deploymentType>cloudhub</deploymentType>
-        <redeploy>true</redeploy>
-        <businessGroup>アクセンチュア</businessGroup>
-        <workerType>Micro</workerType>
-        <workers>1</workers>
-        <region>us-east-1</region>
-        <environment>Sandbox</environment>
-        <env>13411555-3477-4246-b4c8-19683be3f549</env>
-        <applicationName>account-v1</applicationName>
-        <environment.clientId>e0d4cb05f70b41009d948ecf44b11031</environment.clientId>
-        <environment.client_secret>5470F704c42b4a98a8257f213c35c967</environment.client_secret>
-        <api.id>12345</api.id>
-        
         <!-- Login Certificate -->
         <anypoint.uri>https://anypoint.mulesoft.com</anypoint.uri>
-        <username>dev29_masakikawaguchi</username>
-        <password>Accenture2021</password>
+        <!--<username>dev29_masakikawaguchi</username>-->
+        <!--<password>Accenture2021</password>-->
         <connectedAppClientId>a4fc1e985e974cbd917a0b357671d024</connectedAppClientId>
         <connectedAppClientSecret>6401b69833564e3eb91E6Ca9668E4ED1</connectedAppClientSecret>
         
+        <!-- Target Organization settings -->
+        <businessGroup>アクセンチュア</businessGroup>
+        <environment>Sandbox</environment>
+        
+        <!-- Runtime Manager settings -->
+        <applicationName>smpl-dev-account-v1</applicationName>
+        <deploymentType>cloudhub</deploymentType>
+        <redeploy>true</redeploy>
+        <workerType>Micro</workerType>
+        <workers>1</workers>
+        <region>us-east-1</region>
+        <api.id>12345</api.id>
+        <environment.clientId>e0d4cb05f70b41009d948ecf44b11031</environment.clientId>
+        <environment.client_secret>5470F704c42b4a98a8257f213c35c967</environment.client_secret>
+                
         <!-- Github -->
         <releaseName>account-v1-0.0.1</releaseName>
         <accountId>Masaki-Rock</accountId>
