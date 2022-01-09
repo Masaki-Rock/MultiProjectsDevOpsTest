@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.mycompany</groupId>
+    <groupId>b547aeec-a4c6-4c3a-a789-155149b7a023</groupId>
     <artifactId>account-v1</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>mule-application</packaging>
@@ -15,29 +15,14 @@
 
         <app.runtime>4.4.0</app.runtime>
         <mule.maven.plugin.version>3.5.3</mule.maven.plugin.version>
-        
-        <!-- Login Certificate -->
-        <anypoint.uri>https://anypoint.mulesoft.com</anypoint.uri>
-        <!--<username>dev29_masakikawaguchi</username>-->
-        <!--<password>Accenture2021</password>-->
-        <connectedAppClientId>a4fc1e985e974cbd917a0b357671d024</connectedAppClientId>
-        <connectedAppClientSecret>6401b69833564e3eb91E6Ca9668E4ED1</connectedAppClientSecret>
-        
-        <!-- Target Organization settings -->
-        <businessGroup>アクセンチュア</businessGroup>
-        <environment>Sandbox</environment>
-        
-        <!-- Runtime Manager settings -->
-        <applicationName>smpl-dev-account-v1</applicationName>
-        <deploymentType>cloudhub</deploymentType>
-        <redeploy>true</redeploy>
-        <workerType>Micro</workerType>
-        <workers>1</workers>
-        <region>us-east-1</region>
-        <api.id>17534332</api.id>
-        <environment.clientId>e0d4cb05f70b41009d948ecf44b11031</environment.clientId>
-        <environment.client_secret>5470F704c42b4a98a8257f213c35c967</environment.client_secret>
-                
+
+        <description>Muleアプリケーション</description>
+        <mule.version>4.4.0</mule.version>
+        <mule.tools.version>1.2</mule.tools.version>
+        <type>app</type>
+
+        <exchange.url>https://maven.anypoint.mulesoft.com/api/v1/organizations/b547aeec-a4c6-4c3a-a789-155149b7a023/maven</exchange.url>
+
         <!-- Github -->
         <releaseName>account-v1-0.0.1</releaseName>
         <accountId>Masaki-Rock</accountId>
@@ -45,6 +30,67 @@
         <token>XXXXXX</token>
         <preReleaseFlag>false</preReleaseFlag>
     </properties>
+
+    <profiles>
+         <!-- 開発環境用プロファイル -->
+         <profile>
+             <id>development</id>
+             <activation>
+                 <activeByDefault>true</activeByDefault>
+                 <property>
+                     <name>environment</name>
+                     <value>dev</value>
+                 </property>
+             </activation>
+             <properties>
+                 <!-- 接続アプリケーション -->
+                 <connectedAppClientId>a4fc1e985e974cbd917a0b357671d024</connectedAppClientId>
+                 <connectedAppClientSecret>6401b69833564e3eb91E6Ca9668E4ED1</connectedAppClientSecret>
+                 <!-- ターゲット組織 -->
+                 <businessGroup>アクセンチュア</businessGroup>
+                 <environment>Sandbox</environment>
+                 <!-- ランタイムマネージャ -->
+                 <name>smpl-dev-account-v1</name>
+                 <deploymentType>cloudhub</deploymentType>
+                 <redeploy>true</redeploy>
+                 <workerType>Micro</workerType>
+                 <workers>1</workers>
+                 <region>us-east-1</region>
+                 <api.id>17534332</api.id>
+                 <environment.clientId>e0d4cb05f70b41009d948ecf44b11031</environment.clientId>
+                 <environment.client_secret>5470F704c42b4a98a8257f213c35c967</environment.client_secret>
+             </properties>
+         </profile>
+
+         <!-- 本番環境用プロファイル -->
+         <profile>
+            <id>production</id>
+            <activation>
+                 <property>
+                     <name>environment</name>
+                     <value>prod</value>
+                 </property>
+             </activation>
+             <properties>
+                 <!-- 接続アプリケーション -->
+                 <connectedAppClientId>a4fc1e985e974cbd917a0b357671d024</connectedAppClientId>
+                 <connectedAppClientSecret>6401b69833564e3eb91E6Ca9668E4ED1</connectedAppClientSecret>
+                 <!-- ターゲット組織 -->
+                 <businessGroup>アクセンチュア</businessGroup>
+                 <environment>Sandbox</environment>
+                 <!-- ランタイムマネージャ -->
+                 <name>smpl-dev-account-v1</name>
+                 <deploymentType>cloudhub</deploymentType>
+                 <redeploy>true</redeploy>
+                 <workerType>Micro</workerType>
+                 <workers>1</workers>
+                 <region>us-east-1</region>
+                 <api.id>17534332</api.id>
+                 <environment.clientId>e0d4cb05f70b41009d948ecf44b11031</environment.clientId>
+                 <environment.client_secret>5470F704c42b4a98a8257f213c35c967</environment.client_secret>
+             </properties>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>
@@ -59,30 +105,7 @@
                 <version>${mule.maven.plugin.version}</version>
                 <extensions>true</extensions>
                 <configuration>
-                  <cloudHubDeployment>
-                    <uri>${anypoint.uri}</uri>
-                    <!--<deploymentType>${deploymentType}</deploymentType>-->
-                    <muleVersion>${app.runtime}</muleVersion>
-                    <!--<redeploy>${redeploy}</redeploy>-->
-                    <businessGroup>${businessGroup}</businessGroup>
-                    <!--<username>${username}</username>-->
-                    <!--<password>${password}</password>-->
-                    <connectedAppClientId>${connectedAppClientId}</connectedAppClientId>
-                    <connectedAppClientSecret>${connectedAppClientSecret}</connectedAppClientSecret>
-                    <connectedAppGrantType>client_credentials</connectedAppGrantType>
-                    <applicationName>${applicationName}</applicationName>
-                    <environment>${environment}</environment>
-                    <workerType>${workerType}</workerType>
-                    <workers>${workers}</workers>
-                    <region>${region}</region>
-                    <properties>
-                        <api.id>${api.id}</api.id>
-                        <anypoint.platform.client_id>${environment.clientId}</anypoint.platform.client_id>
-                        <anypoint.platform.client_secret>${environment.client_secret}</anypoint.platform.client_secret>
-                        <anypoint.platform.analytics_base_uri>https://analytics-ingest.anypoint.mulesoft.com/</anypoint.platform.analytics_base_uri>
-                    </properties>
-                    <objectStoreV2>true</objectStoreV2>
-                  </cloudHubDeployment>
+                  <classifier>mule-application-example</classifier>
                 </configuration>
             </plugin>
         </plugins>
@@ -114,8 +137,23 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <repository>
+            <id>exchange-server</id>
+            <name>Corporate Repository</name>
+            <url>${exchange.url}</url>
+            <layout>default</layout>
+        </repository>
+    </distributionManagement>
+
     <repositories>
-          <repository>
+        <repository>
+            <id>releases-ee</id>
+            <name>Mule EE Repository</name>
+            <url>https://repository.mulesoft.org/nexus-ee/content/repositories/releases-ee/</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
             <id>anypoint-exchange-v2</id>
             <name>Anypoint Exchange</name>
             <url>https://maven.anypoint.mulesoft.com/api/v2/maven</url>
@@ -128,6 +166,7 @@
             <layout>default</layout>
         </repository>
     </repositories>
+
     <pluginRepositories>
         <pluginRepository>
             <id>mulesoft-releases</id>
