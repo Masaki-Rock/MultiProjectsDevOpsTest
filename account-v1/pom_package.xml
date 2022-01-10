@@ -23,12 +23,24 @@
   </properties>
   
   <build>
+    <finalName>${artifactId}-${version}</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-clean-plugin</artifactId>
         <version>3.0.0</version>
       </plugin>
+            <plugin>
+                <groupId>org.mule.tools.maven</groupId>
+                <artifactId>mule-domain-maven-plugin</artifactId>
+                <version>1.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                <param>${project.build.finalName}</param>
+                    <!-- if MULE_HOME variable is configured then the domain will be copy to domains directory of your mule installation -->
+                    <copyToDomainsDirectory>true</copyToDomainsDirectory>
+                </configuration>
+            </plugin>
       <plugin>
         <groupId>org.mule.tools.maven</groupId>
         <artifactId>mule-maven-plugin</artifactId>
@@ -37,28 +49,6 @@
    <!-- <configuration>
         <param>${project.build.finalName}</param>
     </configuration>-->
-      </plugin>
-      <plugin>
-        <groupId>com.ragedunicorn.tools.maven</groupId>
-        <artifactId>github-release-maven-plugin</artifactId>
-        <version>1.0.3</version>
-        <executions>
-          <execution>
-            <id>default-cli</id>
-            <configuration>
-              <owner>Masaki-Rock</owner>
-              <repository>MultiProjectsDevOpsTest</repository>
-              <server>github-oauth</server>
-              <tagName>v0.0.2</tagName>
-              <name>AccountV9</name>
-              <targetCommitish>main</targetCommitish>
-              <body>Maven Upload to Github release</body>
-              <assets>
-                <asset>target/account-v1-1.0.0-mule-application-example.jar</asset>
-              </assets>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>
