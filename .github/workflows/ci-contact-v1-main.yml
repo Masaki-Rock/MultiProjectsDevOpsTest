@@ -1,4 +1,4 @@
-name: MuleSoft CI contact-v1 main process script
+name: MuleSoft Contact-v1 CI process script
 
 # Trigger settings
 on:
@@ -15,6 +15,7 @@ jobs:
   application-build:
     runs-on: ubuntu-latest
     env:
+      VERSION : 1.0.0-SNAPSHOT
       WORK_DIR : contact-v1
     steps:
       - uses: actions/checkout@v2
@@ -34,7 +35,7 @@ jobs:
 
       - name: Setup new version.
         run: |
-          mvn -f pom_publish.xml versions:set -DnewVersion=1.0.6
+          mvn -f pom_publish.xml versions:set -DnewVersion=${{ env.VERSION }}
           mvn -f pom_publish.xml versions:commit
         working-directory: ${{ env.WORK_DIR }}
         

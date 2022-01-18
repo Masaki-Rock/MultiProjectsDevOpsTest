@@ -5,7 +5,7 @@ java -jar %appjar% -update -api -tiers -policies -alerts -runtimeAlerts -s accou
 
 rem "Mule Application publish"
 rem mvn help:active-profiles
-rem mvn -f pom_publish.xml versions:set -DnewVersion=1.0.4
+rem mvn -f pom_publish.xml versions:set -DnewVersion=1.0.0
 rem mvn -f pom_publish.xml versions:commit
 rem mvn clean package -DattachMuleSources
 rem mvn -s ../settings-master-dev.xml -f pom_publish.xml deploy
