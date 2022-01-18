@@ -19,7 +19,8 @@ jobs:
   application-release:
     runs-on: ubuntu-latest
     env:
-      BRUANCH : main
+      API_ID : 17575290
+      APP_NAME : smpl-dev-account-v1
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -35,15 +36,15 @@ jobs:
       - name: The Account-v1 API instance build process.
         run: APIBuilder-dev.sh
         shell: bash
-        working-directory: "../${{ github.event.inputs.apps }}"
+        working-directory: ${{ github.event.inputs.apps }}
       
       - name: The Account-v1 archeve file download process.
         id: download
         run: mvn -s ../settings-master-dev.xml -f pom_deploy.xml dependency:copy
         shell: bash
-        working-directory: "../${{ github.event.inputs.apps }}"
+        working-directory: ${{ github.event.inputs.apps }}
                 
       - name: The Account-v1 archeve file deploy process.
-        run: mvn -s ../settings-master-dev.xml -f pom_deploy.xml mule:deploy -Dautodiscovery.accountId=17575290 -DapplicationName=smpl-dev-account-v1
+        run: mvn -s ../settings-master-dev.xml -f pom_deploy.xml mule:deploy -Dautodiscovery.apiId=${{ env.API_ID }} -DapplicationName=${{ env.APP_NAME }}
         shell: bash
-        working-directory: "../${{ github.event.inputs.apps }}"
+        working-directory: ${{ github.event.inputs.apps }}

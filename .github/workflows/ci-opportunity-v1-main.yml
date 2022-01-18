@@ -15,8 +15,6 @@ jobs:
   application-build:
     runs-on: ubuntu-latest
     env:
-      PROJECT_HOME : '../../opportunity-v1'
-      BRUANCH : main
       WORK_DIR : opportunity-v1
     steps:
       - uses: actions/checkout@v2
@@ -25,11 +23,22 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Build the Mule application with Maven.
-        run: mvn clean package -DattachMuleSources
+
+      - name: Starting Build and Test.
+        run: mvn clean verify
         working-directory: ${{ env.WORK_DIR }}
-      
-      - name: Upload the Mule application file to the release folder.
-        run: java -jar app.jar -upload -token ${{ secrets.GITHUB_TOKEN }} -config ${{ env.PROJECT_HOME }} -branch ${{ env.BRUANCH }}
+
+      - name: Starting Build and Test.
+        run: mvn clean verify
+        working-directory: ${{ env.WORK_DIR }}
+
+      - name: Setup new version.
+        run: |
+          mvn -f pom_publish.xml versions:set -DnewVersion=1.0.6
+          mvn -f pom_publish.xml versions:commit
+        working-directory: ${{ env.WORK_DIR }}
+        
+      - name: Publish the target mule application deploy file.
+        run: mvn -s ../settings-master-dev.xml -f pom_publish.xml deploy
         shell: bash
-        working-directory: .github/script
+        working-directory: ${{ env.WORK_DIR }}
