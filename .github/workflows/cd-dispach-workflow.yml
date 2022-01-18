@@ -1,4 +1,4 @@
-name: MuleSoft CD account-v1 process script
+name: MuleSoft Multi Dispatch CD process script
 
 # Trigger settings
 on:
