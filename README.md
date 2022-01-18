@@ -12,3 +12,5 @@ $ mvn clean package -DattachMuleSources
 # 指定ファイルをCloudHubにデプロイする
 $ mvn mule:deploy -Dmule.artifact=${{ format('../.github/script/{0}', steps.download.outputs.FILE_NAME) }} -DbusinessGroup=${{ github.event.inputs.org }} -Denvironment=${{ github.event.inputs.env }} -DworkerType=${{ github.event.inputs.type }}
 
+git update-index --add --chmod=+x APIBuilder-dev.sh
+git update-index --add --chmod=+x APIBuilder-prod.sh
