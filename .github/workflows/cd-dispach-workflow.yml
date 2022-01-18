@@ -36,6 +36,7 @@ jobs:
         run: |
           echo "The target application names are ${{ github.event.inputs.apps }}"
           echo "The target environment is ${{ github.event.inputs.env }}"
+          echo "The target artifact version is ${{ github.event.inputs.version }}"
 
       - name: The Account-v1 API instance build process.
         run: ./APIBuilder-${{ github.event.inputs.env }}.sh
@@ -46,7 +47,7 @@ jobs:
         run: |
           mvn -f pom_deploy.xml versions:set -DnewVersion=${{ github.event.inputs.version }}
           mvn -f pom_deploy.xml versions:commit
-        working-directory: ${{ env.WORK_DIR }}
+        working-directory: ${{ github.event.inputs.apps }}
         
       - name: The Account-v1 archeve file download process.
         id: download
