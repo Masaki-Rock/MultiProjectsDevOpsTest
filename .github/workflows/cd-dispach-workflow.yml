@@ -12,6 +12,10 @@ on:
         description: 'Deploy The target environment.'
         required: false
         default: 'Sandbox'
+      version:
+        description: 'Deploy The target artifact version.'
+        required: false
+        default: '1.0.0-SNAPSHOT'
 
 # Job settings
 jobs:
@@ -37,7 +41,13 @@ jobs:
         run: ./APIBuilder-${{ github.event.inputs.env }}.sh
         shell: bash
         working-directory: ${{ github.event.inputs.apps }}
-      
+
+      - name: Change the artifact version.
+        run: |
+          mvn -f pom_deploy.xml versions:set -DnewVersion=${{ github.event.inputs.version }}
+          mvn -f pom_deploy.xml versions:commit
+        working-directory: ${{ env.WORK_DIR }}
+        
       - name: The Account-v1 archeve file download process.
         id: download
         run: mvn -s ../settings-master-${{ github.event.inputs.env }}.xml -f pom_deploy.xml dependency:copy
