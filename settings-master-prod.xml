@@ -1,0 +1,47 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0                       http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <localRepository />
+  <interactiveMode />
+  <usePluginRegistry />
+  <offline />
+  <pluginGroups />
+  <servers>
+    <server>
+      <id>exchange-server</id>
+      <username>dev29_masakikawaguchi</username>
+      <password>Accenture2021</password>
+    </server>
+  </servers>
+  <mirrors />
+  <proxies />
+  <profiles>
+    <!-- 本番環境用プロファイル -->
+    <profile>
+      <id>production</id>
+      <activation>
+        <property>
+          <name>env</name>
+        </property>
+      </activation>
+      <properties>
+        <!-- 接続アプリケーション -->
+        <connectedAppClientId>a4fc1e985e974cbd917a0b357671d024</connectedAppClientId>
+        <connectedAppClientSecret>6401b69833564e3eb91E6Ca9668E4ED1</connectedAppClientSecret>
+        <!-- ターゲット組織 -->
+        <businessGroup>アクセンチュア</businessGroup>
+        <environment>Production</environment>
+        <!-- ランタイムマネージャ -->
+        <deploymentType>cloudhub</deploymentType>
+        <redeploy>true</redeploy>
+        <workerType>Micro</workerType>
+        <workers>1</workers>
+        <region>us-east-1</region>
+        <!-- AutoDiscovery 環境情報 -->
+        <environment.clientId>257a1f9111064205b8128e9bade5b6ff</environment.clientId>
+        <environment.client_secret>C1Ed4723776a415cAC478362AeaFA314</environment.client_secret>
+      </properties>
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <activeProfile>production</activeProfile>
+  </activeProfiles>
+</settings>

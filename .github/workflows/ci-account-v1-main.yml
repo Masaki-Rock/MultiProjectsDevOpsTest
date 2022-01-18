@@ -1,12 +1,12 @@
-name: MuleSoft CI account-v1 main process script
+name: MuleSoft CI account-v1 staging process script
 
 # Trigger settings
 on:
   push:
-    branches: [ main ]
+    branches: [ staging ]
     path: ['account-v1/*']
   pull_request:
-    branches: [ main ]
+    branches: [ staging ]
     path: ['account-v1/*']
 
 # Job settings
@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PROJECT_HOME : '../../account-v1'
-      BRUANCH : main
+      BRUANCH : staging
       WORK_DIR : account-v1
     steps:
       - uses: actions/checkout@v2

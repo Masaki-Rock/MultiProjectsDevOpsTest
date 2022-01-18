@@ -4,22 +4,14 @@ name: MuleSoft CD account-v1 process script
 on:
   workflow_dispatch:
     inputs:
-      org:
-        description: 'Deploy Environment.'
+      apps:
+        description: 'Deploy The target applications.'
         required: false
-        default: 'アクセンチュア'
+        default: 'account-v1'
       env:
-        description: 'Deploy Bussines group.'
+        description: 'Deploy The target environment.'
         required: false
         default: 'Sandbox'
-      type:
-        description: 'Specify Woker size.'
-        required: false
-        default: 'Micro'
-      artifact:
-        description: 'Specify Deployment file name.'
-        required: false
-        default: 'account-v1-0.0.1.jar'
 
 # Job settings
 jobs:
@@ -27,9 +19,7 @@ jobs:
   application-release:
     runs-on: ubuntu-latest
     env:
-      PROJECT_HOME : '../../account-v1'
       BRUANCH : main
-      WORK_DIR : account-v1
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -39,17 +29,21 @@ jobs:
           distribution: 'adopt'
       - name: Echo input parameter.
         run: |
-          echo "The Business Group ID is ${{ github.event.inputs.org }}"
-          echo "The Environment is ${{ github.event.inputs.env }}"
+          echo "The target application names are ${{ github.event.inputs.apps }}"
+          echo "The target environment is ${{ github.event.inputs.env }}"
+
+      - name: The Account-v1 API instance build process.
+        run: APIBuilder-dev.sh
+        shell: bash
+        working-directory: "../${{ github.event.inputs.apps }}"
       
-      - name: Download deployment file.
+      - name: The Account-v1 archeve file download process.
         id: download
-        run: |
-          echo "::set-output name=FILE_NAME::$(java -jar app.jar -download -token ${{ secrets.GITHUB_TOKEN }} -config ${{ env.PROJECT_HOME }} -branch ${{ env.BRUANCH }})"
+        run: mvn -s ../settings-master-dev.xml -f pom_deploy.xml dependency:copy
         shell: bash
-        working-directory: .github/script
+        working-directory: "../${{ github.event.inputs.apps }}"
                 
-      - name: Deploy to specified environment.
-        run: mvn mule:deploy -Dmule.artifact=${{ format('../.github/script/{0}', steps.download.outputs.FILE_NAME) }} -DbusinessGroup=${{ github.event.inputs.org }} -Denvironment=${{ github.event.inputs.env }} -DworkerType=${{ github.event.inputs.type }}
+      - name: The Account-v1 archeve file deploy process.
+        run: mvn -s ../settings-master-dev.xml -f pom_deploy.xml mule:deploy -Dautodiscovery.accountId=17575290 -DapplicationName=smpl-dev-account-v1
         shell: bash
-        working-directory: ${{ env.WORK_DIR }}
+        working-directory: "../${{ github.event.inputs.apps }}"
