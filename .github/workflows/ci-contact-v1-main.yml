@@ -3,11 +3,13 @@ name: MuleSoft Contact-v1 CI process script
 # Trigger settings
 on:
   push:
-    branches: [ main ]
-    path: ['contact-v1/*']
+    branches:
+      - main
+      - contact-v1/**
   pull_request:
-    branches: [ main ]
-    path: ['contact-v1/*']
+    branches:
+      - main
+      - contact-v1/**
 
 # Job settings
 jobs:

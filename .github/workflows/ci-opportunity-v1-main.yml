@@ -3,11 +3,13 @@ name: MuleSoft Opportunity-v1 CI process script
 # Trigger settings
 on:
   push:
-    branches: [ main ]
-    path: ['opportunity-v1/*']
+    branches:
+      - main
+      - opportunity-v1/**
   pull_request:
-    branches: [ main ]
-    path: ['opportunity-v1/*']
+    branches:
+      - main
+      - opportunity-v1/**
 
 # Job settings
 jobs:

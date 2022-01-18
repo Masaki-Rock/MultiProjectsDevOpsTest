@@ -3,11 +3,13 @@ name: MuleSoft Account-v1 CI process script
 # Trigger settings
 on:
   push:
-    branches: [ main ]
-    path: ['account-v1/*']
+    branches:
+      - main
+      - account-v1/**
   pull_request:
-    branches: [ main ]
-    path: ['account-v1/*']
+    branches:
+      - main
+      - account-v1/**
 
 # Job settings
 jobs:
