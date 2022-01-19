@@ -6,14 +6,17 @@ on:
       appName:
         description: 'Deploy The target applications.'
         required: false
+        type: string
         default: 'account-v1'
       version:
         description: 'Deploy The target artifact version.'
         required: false
+        type: string
         default: '1.0.0-SNAPSHOT'
       env:
         description: 'Deploy The target environment.'
         required: false
+        type: string
         default: 'Sandbox'
 
 jobs:
