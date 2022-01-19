@@ -36,7 +36,7 @@ on:
         description: 'Deploy The target artifact version.'
         required: false
         default: '1.0.0-SNAPSHOT'
-      env:
+      environment:
         description: 'Deploy The target environment.'
         required: false
         default: 'Sandbox'
@@ -49,5 +49,5 @@ jobs:
     with:
       appName: ${{ github.event.inputs.appName1 }}
       version: ${{ github.event.inputs.appVersion1 }}
-      env: ${{ github.event.inputs.env }}
+      environment: ${{ github.event.inputs.environment }}
 
