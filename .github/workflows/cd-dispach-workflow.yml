@@ -51,26 +51,3 @@ jobs:
       version: ${{ github.event.inputs.appVersion1 }}
       env: ${{ github.event.inputs.env }}
 
-  deployJob2:
-    if: github.event.inputs.appName2 != ''
-    uses: Masaki-Rock/MultiProjectsDevOpsTest/.github/workflows/cd-deploy-workflow.yml@main
-    with:
-      appName: ${{ github.event.inputs.appName2 }}
-      version: ${{ github.event.inputs.appVersion2 }}
-      env: ${{ github.event.inputs.env }}
-
-  deployJob3:
-    if: github.event.inputs.appName3 != ''
-    uses: Masaki-Rock/MultiProjectsDevOpsTest/.github/workflows/cd-deploy-workflow.yml@main
-    with:
-      appName: ${{ github.event.inputs.appName3 }}
-      version: ${{ github.event.inputs.appVersion3 }}
-      env: ${{ github.event.inputs.env }}
-
-  deployJob4:
-    if: github.event.inputs.appName4 != ''
-    uses: Masaki-Rock/MultiProjectsDevOpsTest/.github/workflows/cd-deploy-workflow.yml@main
-    with:
-      appName: ${{ github.event.inputs.appName4 }}
-      version: ${{ github.event.inputs.appVersion4 }}
-      env: ${{ github.event.inputs.env }}
