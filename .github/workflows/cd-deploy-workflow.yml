@@ -2,13 +2,18 @@ name: MuleSoft CD process script
 
 # Trigger settings
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       appName:
         description: 'Deploy The target applications.'
         required: true
         type: string
         default: 'account-v1'
+      apiId:
+        description: 'Deploy The target api Id.'
+        required: true
+        type: string
+        default: '17575290'
       version:
         description: 'Deploy The target artifact version.'
         required: true
@@ -26,7 +31,6 @@ jobs:
   application-release:
     runs-on: ubuntu-latest
     env:
-      API_ID : 17575290
       APP_NAME : smpl-dev-account-v1
     steps:
       - uses: actions/checkout@v2
@@ -59,6 +63,6 @@ jobs:
         working-directory: ${{ github.event.inputs.appName }}
                 
       - name: The Account-v1 archeve file deploy process.
-        run: mvn -s ../settings-master-${{ github.event.inputs.environmentd }}.xml -f pom_deploy.xml mule:deploy -Dautodiscovery.apiId=${{ env.API_ID }} -DapplicationName=${{ env.APP_NAME }}
+        run: mvn -s ../settings-master-${{ github.event.inputs.environmentd }}.xml -f pom_deploy.xml mule:deploy -Dautodiscovery.apiId=${{ github.event.inputs.apiId }} -DapplicationName=${{ env.APP_NAME }}
         shell: bash
         working-directory: ${{ github.event.inputs.appName }}
