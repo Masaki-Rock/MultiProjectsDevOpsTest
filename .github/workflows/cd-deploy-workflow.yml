@@ -6,17 +6,17 @@ on:
     inputs:
       appName:
         description: 'Deploy The target applications.'
-        required: false
+        required: true
         type: string
         default: 'account-v1'
       version:
         description: 'Deploy The target artifact version.'
-        required: false
+        required: true
         type: string
         default: '1.0.0-SNAPSHOT'
       env:
         description: 'Deploy The target environment.'
-        required: false
+        required: true
         type: string
         default: 'Sandbox'
 
