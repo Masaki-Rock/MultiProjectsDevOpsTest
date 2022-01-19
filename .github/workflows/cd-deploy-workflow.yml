@@ -1,4 +1,4 @@
-name: MuleSoft Multi Dispatch CD process script
+name: MuleSoft CD process script
 
 # Trigger settings
 on:
@@ -9,16 +9,16 @@ on:
         required: false
         type: string
         default: 'account-v1'
-      env:
-        description: 'Deploy The target environment.'
-        required: false
-        type: string
-        default: 'Sandbox'
       version:
         description: 'Deploy The target artifact version.'
         required: false
         type: string
         default: '1.0.0-SNAPSHOT'
+      env:
+        description: 'Deploy The target environment.'
+        required: false
+        type: string
+        default: 'Sandbox'
 
 # Job settings
 jobs:
@@ -37,9 +37,9 @@ jobs:
           distribution: 'adopt'
       - name: Echo input parameter.
         run: |
-          echo "The target application names are ${{ github.event.inputs.appName }}"
-          echo "The target environment is ${{ github.event.inputs.env }}"
+          echo "The target application names is ${{ github.event.inputs.appName }}"
           echo "The target artifact version is ${{ github.event.inputs.version }}"
+          echo "The target environment is ${{ github.event.inputs.env }}"
 
       - name: The Account-v1 API instance build process.
         run: ./APIBuilder-${{ github.event.inputs.env }}.sh
