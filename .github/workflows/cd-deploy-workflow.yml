@@ -63,6 +63,6 @@ jobs:
         working-directory: ${{ github.event.inputs.appName }}
                 
       - name: The Account-v1 archeve file deploy process.
-        run: mvn -s ../settings-master-${{ github.event.inputs.environmentd }}.xml -f pom_deploy.xml mule:deploy -Dautodiscovery.apiId=${{ github.event.inputs.apiId }} -DapplicationName=${{ env.APP_NAME }}
+        run: mvn -s "../settings-master-${{ github.event.inputs.environmentd }}.xml" -f pom_deploy.xml mule:deploy -Dautodiscovery.apiId=${{ github.event.inputs.apiId }} -DapplicationName="smpl-${{ env.environment }}-${{ env.APP_NAME }}-v1"
         shell: bash
         working-directory: ${{ github.event.inputs.appName }}
