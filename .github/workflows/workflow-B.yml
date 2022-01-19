@@ -1,0 +1,22 @@
+name: Call a reusable workflow
+
+on:
+  workflow_call:
+    inputs:
+      appName:
+        description: 'Deploy The target applications.'
+        required: false
+        default: 'account-v1'
+      version:
+        description: 'Deploy The target artifact version.'
+        required: false
+        default: '1.0.0-SNAPSHOT'
+      env:
+        description: 'Deploy The target environment.'
+        required: false
+        default: 'Sandbox'
+
+jobs:
+  job1:
+    steps:
+      - run: echo ${{ github.event.inputs.appName }} ${{ github.event.inputs.version }} ${{ github.event.inputs.env }}

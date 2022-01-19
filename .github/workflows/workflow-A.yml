@@ -1,0 +1,27 @@
+name: Call a reusable workflow and use its outputs
+
+# Trigger settings
+on:
+  workflow_dispatch:
+    inputs:
+      appName:
+        description: 'Deploy The target applications.'
+        required: false
+        default: 'account-v1'
+      version:
+        description: 'Deploy The target artifact version.'
+        required: false
+        default: '1.0.0-SNAPSHOT'
+      env:
+        description: 'Deploy The target environment.'
+        required: false
+        default: 'Sandbox'
+
+
+jobs:
+  job1:
+    uses: ./.github/workflows/workflow-B.yml@v1
+    with:
+      appName: ${{ github.event.inputs.appName }}
+      version: ${{ github.event.inputs.version }}
+      env: ${{ github.event.inputs.env }}
