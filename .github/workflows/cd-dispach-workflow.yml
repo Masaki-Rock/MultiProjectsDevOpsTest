@@ -4,11 +4,11 @@ name: MuleSoft Multi Dispatch CD process script
 on:
   workflow_dispatch:
     inputs:
-      appNameA:
+      appName1:
         description: 'Deploy The target applications.'
         required: false
         default: ''
-      appVersionA:
+      appVersion1:
         description: 'Deploy The target artifact version.'
         required: false
         default: '1.0.0-SNAPSHOT'
@@ -44,11 +44,11 @@ on:
 
 jobs:
   deployJob1:
-    if: github.event.inputs.appNameA != ''
+    if: github.event.inputs.appName1 != ''
     uses: Masaki-Rock/MultiProjectsDevOpsTest/.github/workflows/cd-deploy-workflow.yml@main
     with:
-      appName: ${{ github.event.inputs.appName2 }}
-      version: ${{ github.event.inputs.appVersion2 }}
+      appName: ${{ github.event.inputs.appName1 }}
+      version: ${{ github.event.inputs.appVersion1 }}
       env: ${{ github.event.inputs.env }}
 
   deployJob2:
