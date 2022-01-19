@@ -25,6 +25,8 @@ jobs:
       appName: ${{ github.event.inputs.appName }}
       version: ${{ github.event.inputs.version }}
       env: ${{ github.event.inputs.env }}
+      
+  job2:
     runs-on: ubuntu-latest
     steps:
    
