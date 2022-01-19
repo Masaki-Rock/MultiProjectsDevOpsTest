@@ -21,10 +21,10 @@ on:
 jobs:
   job1:
     uses: Masaki-Rock/MultiProjectsDevOpsTest/.github/workflows/workflow-B.yml@main
-      with:
-        appName: ${{ github.event.inputs.appName }}
-        version: ${{ github.event.inputs.version }}
-        env: ${{ github.event.inputs.env }}
+    with:
+      appName: ${{ github.event.inputs.appName }}
+      version: ${{ github.event.inputs.version }}
+      env: ${{ github.event.inputs.env }}
     runs-on: ubuntu-latest
     steps:
    
