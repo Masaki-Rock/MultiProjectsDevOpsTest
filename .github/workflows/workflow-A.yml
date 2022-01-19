@@ -1,4 +1,4 @@
-name: Call a reusable workflow and use its outputs
+name: Workflow Dispatch Test
 
 # Trigger settings
 on:
@@ -20,7 +20,7 @@ on:
 
 jobs:
   job1:
-    uses: ./.github/workflows/workflow-B.yml@v1
+    uses: Masaki-Rock/MultiProjectsDevOpsTest/.github/workflows/workflow-B.yml@v1
     with:
       appName: ${{ github.event.inputs.appName }}
       version: ${{ github.event.inputs.version }}
