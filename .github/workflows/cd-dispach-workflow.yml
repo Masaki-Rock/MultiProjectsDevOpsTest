@@ -47,8 +47,8 @@ jobs:
     if: github.event.inputs.appNameA != ''
     uses: Masaki-Rock/MultiProjectsDevOpsTest/.github/workflows/cd-deploy-workflow.yml@main
     with:
-      appName: ${{ github.event.inputs.appNameA }}
-      version: ${{ github.event.inputs.appVersionA }}
+      appName: "account-v1"
+      version: "1.0.6"
       env: ${{ github.event.inputs.env }}
 
   deployJob2:
